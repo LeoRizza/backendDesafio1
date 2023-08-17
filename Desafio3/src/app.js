@@ -16,6 +16,10 @@ const productManagerInstance = new ProductManager(productsFilePath);
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 
+app.get("/", (req, res) => {
+    res.send("/products para ver productos");
+});
+
 app.get("/products", async (req, res) => {
     const products = await productManagerInstance.getProducts();
     const limit = Number(req.query.limit);
