@@ -16,22 +16,19 @@ const productManagerInstance = new ProductManager(productsFilePath);
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 
-/* app.get("/", (req, res) => {
-    res.send("/products para ver productos");
-}); */
+app.get("/", async (req, res) => {
+    const products = await productManagerInstance.getProducts();
+    return res.status(200).json(products);
+});
 
-app.get(["/", "/products"], async (req, res) => {
+app.get("/products", async (req, res) => {
     const products = await productManagerInstance.getProducts();
     const limit = Number(req.query.limit);
-    
-    if (isNaN(limit) || !Number.isInteger(limit) || limit < 0) {
-        return res.status(400).json({ message: "El parámetro limit debe ser un número entero positivo" });
+
+    if (!isNaN(limit) && (Number.isInteger(limit) && limit > 0)) {
+        return res.status(200).json(products.slice(0, limit));
     } else {
-        if (limit > 0) {
-            return res.status(200).json(products.slice(0, limit));
-        } else {
-            return res.status(200).json(products);
-        }
+        return res.status(200).json(products);
     }
 });
 
@@ -44,6 +41,10 @@ app.get("/products/:pid", async (req, res) => {
     } else {
         res.status(200).json(product);
     }
+});
+
+app.post("/products", (req, res) => {
+
 });
 
 app.listen(PORT, () => {
