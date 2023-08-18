@@ -9,8 +9,8 @@
     "dev": "nodemon src/app.js"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Rizza Leonardo",
+  "license": "MIT",
   "devDependencies": {
     "nodemon": "^3.0.1"
   },

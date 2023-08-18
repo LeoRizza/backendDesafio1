@@ -32,7 +32,7 @@ class ProductManager {
         if (product) {
             return product;
         } else {
-            return { message: "Product Not Found" };
+            return { message: "Producto no encontrado" };
         }
     }
 
