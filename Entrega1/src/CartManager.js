@@ -1,21 +1,37 @@
 class CartManager {
     constructor() {
-        this.cart = [];
+        this.carts = [];
+        this.currentCartId = 1;
     }
 
-    addToCart(product) {
-        this.cart.push(product);
+    createCart() {
+        const newCart = {
+            id: this.currentCartId,
+            products: []
+        };
+        this.carts.push(newCart);
+        this.currentCartId++;
+        return newCart;
     }
 
-    getCart() {
-        return this.cart;
+    getCartById(cartId) {
+        return this.carts.find(cart => cart.id === cartId);
     }
 
-    removeFromCart(productId) {
-        const index = this.cart.findIndex(item => item.id === productId);
-        if (index !== -1) {
-            this.cart.splice(index, 1);
+    addProductToCart(cartId, productId, quantity) {
+        const cart = this.getCartById(cartId);
+        if (!cart) {
+            return false;
         }
+
+        const existingProduct = cart.products.find(product => product.product === productId);
+        if (existingProduct) {
+            existingProduct.quantity += quantity;
+        } else {
+            cart.products.push({ product: productId, quantity });
+        }
+
+        return true;
     }
 }
 
