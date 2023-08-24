@@ -3,7 +3,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import productRoutes from './routes/products.routes.js';
 import cartRoutes from './routes/cart.routes.js';
-import CartManager from './CartManager.js'; // Importa el CartManager
+import CartManager from './CartManager.js';
 
 const PORT = 8080;
 const app = express();
@@ -17,7 +17,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api/products', productRoutes);
-app.use('/api/cart', cartRoutes); // Agrega el enrutador de carrito
+app.use('/api/cart', cartRoutes);
 
 app.listen(PORT, () => {
     console.log(`Servidor puerto: ${PORT}`);

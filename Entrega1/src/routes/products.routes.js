@@ -7,7 +7,7 @@ const router = express.Router();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const productsFilePath = path.join(__dirname, '../../products/products.json'); // Ajusta la ruta correcta
+const productsFilePath = path.join(__dirname, '../../products/products.json');
 const productManagerInstance = new ProductManager(productsFilePath);
 
 router.get('/', async (req, res) => {
