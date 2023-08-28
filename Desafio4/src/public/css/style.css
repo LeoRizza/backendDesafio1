@@ -1,3 +1,56 @@
+* {
+    margin: 0;
+}
 body {
     background-color: blueviolet;
+}
+
+#addProductForm {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+}
+
+#addProductForm input{
+    margin: 5px 0;
+}
+
+#addProductForm button{
+    padding: 7px;
+    margin: 0 70px;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(18, 101, 50);
+    padding: 20px 0;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+nav ul li {
+    margin-left: 20px;
+    list-style: none;
+}
+
+.listaProds ul li {
+    list-style: none;
+    padding: 7px 0px;
+}
+
+#deleteProductForm {
+    margin: 20px 5px;
+}
+
+footer {
+    display: flex;
+}
+
+footer li {
+    list-style: none;
 }
