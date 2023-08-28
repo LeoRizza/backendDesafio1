@@ -31,11 +31,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 //server socket.io
 const io = new Server(server);
 
-io.on('connection', (socket) => {
+io.on('connection', async (socket) => {
     console.log("Servidor Socket.io conectado");
     socket.on('mensajeConexion', (info) => {
         console.log(info);
     });
+    socket.emit('realtimeProducts', await productManagerInstance.getProducts());
 });
 
 //handlebars
@@ -51,5 +52,12 @@ app.get('/static', async (req, res) => {
         titulo: "Ecommerce backend",
         js: "script.js",
         productos: products 
+    });
+});
+
+app.get('/realtimeproducts', async (req, res) => {
+    res.render('realTimeProducts', {
+        css: "style.css",
+        titulo: "Productos en tiempo real",
     });
 });
