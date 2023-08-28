@@ -37,6 +37,15 @@ io.on('connection', async (socket) => {
         console.log(info);
     });
     socket.emit('realtimeProducts', await productManagerInstance.getProducts());
+    socket.on('addProduct', async (newProduct) => {
+        await productManagerInstance.addProduct(newProduct);
+        io.emit('realtimeProducts', await productManagerInstance.getProducts());
+    });
+
+    socket.on('deleteProduct', async (productId) => {
+        await productManagerInstance.deleteProduct(productId);
+        io.emit('realtimeProducts', await productManagerInstance.getProducts());
+    });
 });
 
 //handlebars
